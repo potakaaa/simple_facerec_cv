@@ -8,7 +8,7 @@ sfr = SimpleFacerec()
 sfr.load_encoding_images("images/")
 
 # Open the webcam
-cam = cv2.VideoCapture(0)
+cam = cv2.VideoCapture(1)
 
 # Get screen dimensions
 screen = screeninfo.get_monitors()[0]
