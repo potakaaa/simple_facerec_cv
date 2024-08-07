@@ -3,18 +3,11 @@ import cv2
 import tkinter as tk
 from PIL import Image, ImageTk
 from datetime import datetime
-<<<<<<< HEAD
-from tkinter import simpledialog, messagebox
-from facerec_functions import FaceRecognition
-import face_recognition
-
-=======
 from tkinter import simpledialog, messagebox, Button
 from facerec_functions import FaceRecognition
 import face_recognition
 
 
->>>>>>> a3fc9bb (Fullscreen window and cam)
 frs = FaceRecognition()
 known_face_encodings, known_face_names = frs.load_known_faces("images/")
 
@@ -25,28 +18,20 @@ class CVApp:
 
         self.video_capture = cv2.VideoCapture(0)
         self.current_image = None
-<<<<<<< HEAD
-        self.canvas = tk.Canvas(window, width=640, height=480)
-=======
         
         self.screen_width = 933
         self.screen_height = 700
 
         # Create a canvas with the fullscreen size
         self.canvas = tk.Canvas(window, width=self.screen_width, height=self.screen_height)
->>>>>>> a3fc9bb (Fullscreen window and cam)
         self.canvas.pack()
 
         self.capture_button = tk.Button(window, text="Capture", command=self.save_current_frame)
         self.capture_button.pack()
         self.raw_frame = None 
-<<<<<<< HEAD
-        self.updateWebcam()
-=======
         self.updateWebcam()       
 
         Button(root, text="Quit", command=root.destroy).pack()  
->>>>>>> a3fc9bb (Fullscreen window and cam)
 
     def updateWebcam(self):
     
@@ -79,11 +64,8 @@ class CVApp:
 
                 frs.draw_rectangle(frame, x, y, w, h, name)
 
-<<<<<<< HEAD
-=======
             frame = cv2.resize(frame, (self.screen_width, self.screen_height))
 
->>>>>>> a3fc9bb (Fullscreen window and cam)
             self.current_image = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
 
             self.photo = ImageTk.PhotoImage(image=self.current_image)
@@ -94,18 +76,12 @@ class CVApp:
 
     def save_current_frame(self):
         if self.raw_frame is not None:
-<<<<<<< HEAD
-            filename = simpledialog.askstring("Input", "Enter a filename for the image:")
-            if not filename:
-                messagebox.showwarning("Input Required", "Filename cannot be empty.")
-=======
             key = cv2.waitKey(-1)
             cv2.imshow('Captured', self.raw_frame)
             filename = simpledialog.askstring("Input", "Enter a filename for the image:")
             if not filename:
                 messagebox.showwarning("Input Required", "Filename cannot be empty.")
                 cv2.destroyWindow("Captured")
->>>>>>> a3fc9bb (Fullscreen window and cam)
                 return
 
             if not filename.lower().endswith('.png'):
@@ -118,18 +94,12 @@ class CVApp:
 
             raw_image = Image.fromarray(cv2.cvtColor(self.raw_frame, cv2.COLOR_BGR2RGB))
             raw_image.save(file_path)
-<<<<<<< HEAD
-            print(f"Image saved to {file_path}")
-
-root = tk.Tk()
-=======
             cv2.destroyWindow("Captured")
             print(f"Image saved to {file_path}")
 
 root = tk.Tk()
 root.attributes("-fullscreen", True)
 
->>>>>>> a3fc9bb (Fullscreen window and cam)
 
 app = CVApp(root)
 
