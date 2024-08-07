@@ -12,6 +12,7 @@ class FaceRecognition:
         known_face_encodings = []
         known_face_names = []
         
+        i = 0
         for filename in os.listdir(known_faces_dir):
             image_path = os.path.join(known_faces_dir, filename)
             image = face_recognition.load_image_file(image_path)
@@ -22,6 +23,9 @@ class FaceRecognition:
                 known_face_encodings.append(face_encodings[0])
 
                 known_face_names.append(os.path.splitext(filename)[0])
+                i += 1
+        
+        print(f"{i} faces found")
         
         return known_face_encodings, known_face_names
 
